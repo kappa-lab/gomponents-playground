@@ -61,7 +61,7 @@ func Page(p Props) g.Node {
 
 			t.Div(
 				t.Class("display-2"),
-				t.P(g.Text("HelloWorld")),
+				t.P(g.Text("HelloWorld--------------")),
 			),
 			t.Div(
 				t.FormEl(
