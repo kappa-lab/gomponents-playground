@@ -34,7 +34,17 @@ func Page(p Props) g.Node {
 		},
 		Body: []g.Node{
 			t.Main(
-				sidebar.Sidebar([]sidebar.Item{}),
+				sidebar.Sidebar([]sidebar.Item{
+					{
+						Title: "Home",
+						Path:  "/",
+					},
+					{
+						Title:  "Order",
+						Path:   "/order",
+						Active: true,
+					},
+				}),
 			),
 		},
 	})

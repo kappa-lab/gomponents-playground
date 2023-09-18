@@ -17,7 +17,6 @@ func main() {
 func handler(w http.ResponseWriter, r *http.Request) {
 	err := components.Page(components.Props{
 		Title: "Mypage",
-		Path:  r.URL.Path,
 	}).Render(w)
 
 	if err != nil {

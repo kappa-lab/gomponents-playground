@@ -21,10 +21,7 @@ func Sidebar(items []Item) g.Node {
 			t.Span(t.Class("fs-4"), g.Text("My Shop")),
 		),
 		t.Hr(),
-		t.Ul(
-			t.Class("nav nav-pills flex-column mb-auto"),
-			addItem(),
-		),
+		createItems(items),
 		t.Hr(),
 		t.Div(
 			t.Class("text-center small"),
@@ -33,13 +30,25 @@ func Sidebar(items []Item) g.Node {
 	)
 }
 
-func addItem() g.Node {
-	return t.Li(
-		t.Class("nav-item"),
-		t.A(
-			t.Href("/"),
-			g.Text("HOME"),
-		),
-	)
+func createItems(items []Item) g.Node {
+	contents := []g.Node{
+		t.Class("nav nav-pills flex-column mb-auto"),
+	}
 
+	for _, v := range items {
+		state := "text-white"
+		if v.Active {
+			state = "active"
+		}
+		contents = append(contents, t.Li(
+			t.Class("nav-item"),
+			t.A(
+				t.Class("nav-link "+state),
+				t.Href(v.Path),
+				g.Text(v.Title),
+			),
+		))
+	}
+
+	return t.Ul(contents...)
 }
