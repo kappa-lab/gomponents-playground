@@ -17,6 +17,7 @@ func main() {
 func handler(w http.ResponseWriter, r *http.Request) {
 	err := components.Page(components.Props{
 		Title: "Mypage",
+		Req:   r,
 	}).Render(w)
 
 	if err != nil {

@@ -1,6 +1,9 @@
 package sidebar
 
 import (
+	"net/http"
+	"strings"
+
 	g "github.com/maragudk/gomponents"
 	t "github.com/maragudk/gomponents/html"
 )
@@ -9,6 +12,45 @@ type Item struct {
 	Title  string
 	Path   string
 	Active bool
+}
+
+func CreateItems(r *http.Request) []Item {
+	items := []Item{
+		{
+			Title: "Home",
+			Path:  "/",
+		},
+		{
+			Title: "Dashboard",
+			Path:  "/dashboard",
+		},
+		{
+			Title: "Order",
+			Path:  "/order",
+		},
+		{
+			Title: "Products",
+			Path:  "/products",
+		},
+		{
+			Title: "Customers",
+			Path:  "/customers",
+		},
+	}
+
+	if r.URL.Path == "/" {
+		items[0].Active = true
+	} else {
+		for i, v := range items[1:] {
+			if strings.HasPrefix(r.URL.Path, v.Path) {
+				items[i+1].Active = true
+				break
+			}
+		}
+
+	}
+
+	return items
 }
 
 func Sidebar(items []Item) g.Node {
@@ -21,7 +63,7 @@ func Sidebar(items []Item) g.Node {
 			t.Span(t.Class("fs-4"), g.Text("My Shop")),
 		),
 		t.Hr(),
-		createItems(items),
+		buildItemNodes(items),
 		t.Hr(),
 		t.Div(
 			t.Class("text-center small"),
@@ -30,7 +72,7 @@ func Sidebar(items []Item) g.Node {
 	)
 }
 
-func createItems(items []Item) g.Node {
+func buildItemNodes(items []Item) g.Node {
 	contents := []g.Node{
 		t.Class("nav nav-pills flex-column mb-auto"),
 	}

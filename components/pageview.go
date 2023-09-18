@@ -1,6 +1,8 @@
 package components
 
 import (
+	"net/http"
+
 	"github.com/kappa-lab/gomponents-playground/components/sidebar"
 	g "github.com/maragudk/gomponents"
 	c "github.com/maragudk/gomponents/components"
@@ -9,7 +11,7 @@ import (
 
 type Props struct {
 	Title string
-	Path  string
+	Req   *http.Request
 }
 
 // Page is a whole document to output.
@@ -34,17 +36,7 @@ func Page(p Props) g.Node {
 		},
 		Body: []g.Node{
 			t.Main(
-				sidebar.Sidebar([]sidebar.Item{
-					{
-						Title: "Home",
-						Path:  "/",
-					},
-					{
-						Title:  "Order",
-						Path:   "/order",
-						Active: true,
-					},
-				}),
+				sidebar.Sidebar(sidebar.CreateItems(p.Req)),
 			),
 		},
 	})
