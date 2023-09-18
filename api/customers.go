@@ -5,7 +5,6 @@ import (
 )
 
 func Handle(w http.ResponseWriter, r *http.Request) {
-
 	if r.URL.Path == "/api/customers" {
 		w.WriteHeader(http.StatusOK)
 		_, _ = w.Write([]byte(`{

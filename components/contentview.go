@@ -102,8 +102,8 @@ func (ContentView) orders() g.Node {
 			),
 		),
 	)
-
 }
+
 func (ContentView) customers(ctx context.Context) g.Node {
-	return t.Div()
+	return NewCustomersView().Load(ctx)
 }
