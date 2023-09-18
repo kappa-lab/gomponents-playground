@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mypage</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <script type="text/javascript">
+        console.log('Ready...');
+        console.log(location.href);
+        function log(val) {
+            console.log(val);
+        }
+        function addMessage(evt) {
+            evt.preventDefault()
+            var messages = document.getElementById("messageList");
+            var li = document.createElement("li")
+            li.textContent = evt.srcElement.messageInput.value
+            messages.appendChild(li)
+
+            evt.srcElement.messageInput.value = ""
+        }
+        function clear(evt) {
+            evt.preventDefault()
+            console.log("clear");
+            var messages = document.getElementById("messageList");
+            while (messages.firstChild) {
+                messages.removeChild(messages.firstChild);
+            }
+        }
+
+        window.onload = function () {
+            console.log('onload');
+            const clearBtn = document.getElementById("clearBtn");
+            clearBtn.onclick = clear
+
+            const messageInput = document.getElementById("messageForm");
+            messageInput.onsubmit = addMessage
+        }
+    </script>
+</head>
+
+<body style="margin:10px">
+    <div class="display-2">
+        <p>HelloWorld</p>
+    </div>
+    <div>
+        <form id="messageForm">
+            <input type="text" name="messageInput" , placeholder="Enter Message" autofocus>
+        </form>
+    </div>
+    <div>
+        <ul id="messageList"></ul>
+    </div>
+    <div>
+        <form>
+            <button id="clearBtn">Clear</button>
+        </form>
+    </div>
+</body>
+
+</html>
