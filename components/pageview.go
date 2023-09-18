@@ -37,6 +37,7 @@ func Page(p Props) g.Node {
 		Body: []g.Node{
 			t.Main(
 				sidebar.Sidebar(sidebar.CreateItems(p.Req)),
+				ContentView{}.Node(p.Req),
 			),
 		},
 	})

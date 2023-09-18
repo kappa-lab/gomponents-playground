@@ -25,8 +25,8 @@ func CreateItems(r *http.Request) []Item {
 			Path:  "/dashboard",
 		},
 		{
-			Title: "Order",
-			Path:  "/order",
+			Title: "Orders",
+			Path:  "/orders",
 		},
 		{
 			Title: "Products",
