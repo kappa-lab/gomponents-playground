@@ -6,7 +6,9 @@ package main
 import (
 	"log"
 	"net/http"
+	"strings"
 
+	"github.com/kappa-lab/gomponents-playground/api"
 	"github.com/kappa-lab/gomponents-playground/components"
 )
 
@@ -15,9 +17,15 @@ func main() {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
+
+	if strings.HasPrefix(r.URL.Path, "/api") {
+		api.Handle(w, r)
+		return
+	}
+
 	err := components.Page(components.Props{
 		Title: "Mypage",
-		Path:  r.URL.Path,
+		Req:   r,
 	}).Render(w)
 
 	if err != nil {
