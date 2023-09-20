@@ -10,3 +10,13 @@ services:
       - ./:/go/src/github.com/kappa-lab/gomponents-playground/
     ports:
       - 8080:8080
+    depends_on:
+      - db
+  db:
+    image: mysql:latest
+    volumes:
+      - ./docker-entrypoint-initdb:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
