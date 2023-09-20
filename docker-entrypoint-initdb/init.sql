@@ -11,5 +11,5 @@ CREATE TABLE customers
 );
 
 INSERT INTO customers (id, name) VALUES (1, "Ben White");
-INSERT INTO customers (id, name) VALUES (1, "Pater Rice");
-INSERT INTO customers (id, name) VALUES (1, "Bob Marry");
+INSERT INTO customers (id, name) VALUES (2, "Pater Rice");
+INSERT INTO customers (id, name) VALUES (3, "Bob Marry");

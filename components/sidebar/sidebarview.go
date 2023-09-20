@@ -67,7 +67,7 @@ func Sidebar(items []Item) g.Node {
 		t.Hr(),
 		t.Div(
 			t.Class("text-center small"),
-			t.P(g.Text("ver 0.0.1")),
+			t.P(g.Text("ver 0.0.2")),
 		),
 	)
 }
