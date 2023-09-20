@@ -2,8 +2,9 @@ version: "3.8"
 services:
   app:
     image: golang:1.21-alpine
-    command: go run .
-    tty: true # コンテナの永続化
+    command: >
+      sh -c 'go install github.com/cosmtrek/air@latest &&
+       air -c .air.toml'
     working_dir: /go/src/github.com/kappa-lab/gomponents-playground/
     volumes: 
       - ./:/go/src/github.com/kappa-lab/gomponents-playground/

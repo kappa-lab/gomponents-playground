@@ -4,7 +4,6 @@ perpare:
 run-web:
 	go run .
 
-
 run-air:
 	air -c .air.toml
 
