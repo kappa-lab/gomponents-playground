@@ -1,6 +1,3 @@
-//go:build go1.18
-// +build go1.18
-
 package main
 
 import (
@@ -13,7 +10,7 @@ import (
 )
 
 func main() {
-	log.Fatal(http.ListenAndServe("localhost:8080", http.HandlerFunc(handler)))
+	log.Fatal(http.ListenAndServe(":8080", http.HandlerFunc(handler)))
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {

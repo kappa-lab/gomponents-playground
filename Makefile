@@ -7,3 +7,6 @@ run-web:
 
 run-air:
 	air -c .air.toml
+
+run-dkc:
+	docker-compose up -d	
