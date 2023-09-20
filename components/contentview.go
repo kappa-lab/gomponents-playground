@@ -41,7 +41,7 @@ func (v ContentView) Node(req *http.Request) g.Node {
 
 func (ContentView) home() g.Node {
 	return t.Div(
-		t.P(g.Text("SHOP-ID: 1")),
+		t.P(g.Text("SHOP-ID: 10")),
 	)
 }
 

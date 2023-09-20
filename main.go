@@ -3,25 +3,24 @@ package main
 import (
 	"log"
 	"net/http"
-	"strings"
 
 	"github.com/kappa-lab/gomponents-playground/api"
 	"github.com/kappa-lab/gomponents-playground/components"
 )
 
 func main() {
-	log.Fatal(http.ListenAndServe(":8080", http.HandlerFunc(handler)))
+	http.HandleFunc("/", handler)
+
+	http.HandleFunc("/api/customers", func(w http.ResponseWriter, r *http.Request) {
+		api.Handle(w, r)
+	})
+
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-
-	if strings.HasPrefix(r.URL.Path, "/api") {
-		api.Handle(w, r)
-		return
-	}
-
 	err := components.Page(components.Props{
-		Title: "Mypage",
+		Title: "My Shop",
 		Req:   r,
 	}).Render(w)
 
